@@ -32,9 +32,15 @@ Copyright (C) 2012 Xamarin. All rights reserved.
              Disable generation to avoid "bizarre" build errors. -->
         <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
         <_AndroidResourceDesigner>Resource.Designer.fs</_AndroidResourceDesigner>
+
+        <FSharpTargets Condition="'$(FSharpTargets)' == '' And '$(VisualStudioVersion)' == '11.0' And Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargets>
+        <FSharpTargets Condition="'$(FSharpTargets)' == '' And Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets')">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargets>
+        <FSharpTargets Condition="'$(FSharpTargets)' == '' And Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')">$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargets>
+        <FSharpTargets Condition="'$(FSharpTargets)' == '' And Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets')">$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargets>
+        <FSharpTargets Condition="'$(FSharpTargets)' == ''">$(MSBuildBinPath)\Microsoft.FSharp.Targets</FSharpTargets>
+      
     </PropertyGroup>
-    <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets" Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets') AND !Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')" />
-    <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" Condition="Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets')" />
+    <Import Project="$(FSharpTargets)" />
     <Import Project="Xamarin.Android.Common.targets" />
     <!--
     *******************************************
